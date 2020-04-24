@@ -73,7 +73,9 @@ def return_figures():
         list (dict): list containing the four plotly visualizations
 
     """
-
+    clone_repo()
+    load_data()
+    cleandata()
     # first chart plots arable land from 1990 to 2015 in top 10 economies 
     # as a line chart
     
