@@ -19,15 +19,6 @@ pip install folium
 # Use this file to read in your data and prepare the plotly visualizations. The path to the data files are in
 # `data/file_name.csv`
 
-def clone_repo():
-  !git clone -l -s git://github.com/acrucetta/chicago-atlas.git cloned-repo
-  %cd cloned-repo
-  !ls
-
-  !curl --remote-name \
-     -H 'Accept: application/vnd.github.v3.raw' \
-     --location https://raw.githubusercontent.com/acrucetta/chicago-atlas/master/db/import/zipcodes.geojson
-
 def load_data():
     #Loading Chicago Department of Public Health Clinic Locations
     p_clinics = pd.read_json('https://data.cityofchicago.org/resource/kcki-hnch.json')
@@ -43,6 +34,8 @@ def load_data():
 
     #Loading Public Health Statistics- Diabetes hospitalizations in Chicago, 2000 - 2011
     diabetes_df = pd.read_json('https://data.cityofchicago.org/resource/vekt-28b5.json')
+    
+    
 
 def cleandata():
     # Plotting flu shot locations
@@ -73,7 +66,6 @@ def return_figures():
         list (dict): list containing the four plotly visualizations
 
     """
-    clone_repo()
     load_data()
     cleandata()
     # first chart plots arable land from 1990 to 2015 in top 10 economies 
