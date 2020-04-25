@@ -1,11 +1,5 @@
 import pandas as pd
-import json
-import numpy as np
-import plotly
-import matplotlib.pyplot as plt
-import requests
-import plotly.graph_objects as go
-import folium
+import plotly.graph_objs as go
 
 ''' 
 Modules to Install:
@@ -17,11 +11,11 @@ pip install requests
 pip install folium
 '''
 
+
 # Use this file to read in your data and prepare the plotly visualizations. The path to the data files are in
 # `data/file_name.csv`
 
 def return_figures():
-
     """Creates four plotly visualizations
 
     Args:
@@ -34,16 +28,16 @@ def return_figures():
     # Plotting flu shot locations
     p_clinics = pd.read_json('https://data.cityofchicago.org/resource/kcki-hnch.json')
 
-    #Loading Flu Shot Locations - Current Season Calendar
+    # Loading Flu Shot Locations - Current Season Calendar
     flu_loc = pd.read_json('https://data.cityofchicago.org/resource/uks9-jgth.json')
 
-    #Loading locations for Mental Health Clinics
+    # Loading locations for Mental Health Clinics
     mental_health_loc = pd.read_json('https://data.cityofchicago.org/resource/g7ng-5vwp.json')
 
-    #Loading Public Health Statistics- Diabetes hospitalizations in Chicago, 2000 - 2011
+    # Loading Public Health Statistics- Diabetes hospitalizations in Chicago, 2000 - 2011
     diabetes_df = pd.read_json('https://data.cityofchicago.org/resource/vekt-28b5.json')
-    
-    #Requestin Mapbox Access Token
+
+    # Requestin Mapbox Access Token
     mapbox_access_token = "pk.eyJ1IjoiYWNydWNldHRhIiwiYSI6ImNrOTRvbGxwazBmYjIzaXAzYjVqeXl5dHgifQ.xIYZveielGt7Nm0-ljj_9Q"
 
     # Flu shot locations
@@ -60,59 +54,55 @@ def return_figures():
     mental_lat = mental_health_loc['latitude']
     mental_lon = mental_health_loc['longitude']
     mental_name = mental_health_loc['site_name']
-    
-    #Plotting flu shot locations in Chicago
-    data = go.Figure()  
-    
-    data.add_trace(go.Scattermapbox(
+
+    # Plotting Chicago map
+    data_one = [go.Scattermapbox(
         lat=site_lat,
         lon=site_lon,
         legendgroup="Flu Shot Locations",
-        name = "Flu Shot Locations",
+        name="Flu Shot Locations",
         mode='markers',
         marker=go.scattermapbox.Marker(
             size=9,
             color='green',
             opacity=0.6,
-            symbol = 'pharmacy'
+            symbol='pharmacy'
         ),
         text=locations_name,
         hoverinfo='text',
-    ))
-
-    data.add_trace(go.Scattermapbox(
+    ),
+        go.Scattermapbox(
             lat=clinic_lat,
             lon=clinic_lon,
             legendgroup="Public Clinics",
             mode='markers',
-            name = 'Public Clinics',
+            name='Public Clinics',
             marker=go.scattermapbox.Marker(
                 size=10,
                 color='blue',
                 opacity=1,
-                symbol = "hospital"
+                symbol="hospital"
             ),
             text=clinic_name,
             hoverinfo='text'
-        ))
-
-    data.add_trace(go.Scattermapbox(
+        ),
+        go.Scattermapbox(
             lat=mental_lat,
             lon=mental_lon,
             legendgroup="Mental Health Hospitals",
-            name = 'Mental Health Hospitals',
+            name='Mental Health Hospitals',
             mode='markers',
             marker=go.scattermapbox.Marker(
                 size=10,
                 color='yellow',
                 opacity=1,
-                symbol = "circle"
+                symbol="circle"
             ),
             text=mental_name,
             hoverinfo='text'
-        ))
+        )]
 
-    data.update_layout(
+    layout_one = dict(
         title='Community Health Resources in Chicago',
         autosize=True,
         hovermode='closest',
@@ -128,8 +118,8 @@ def return_figures():
             zoom=12,
             style='light'
         ))
-    data.show()
-    
-    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
 
-    return graphJSON
+    figures = []
+    figures.append(dict(data=data_one, layout=layout_one))
+
+    return figures
