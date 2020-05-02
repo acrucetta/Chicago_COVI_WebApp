@@ -25,7 +25,7 @@ def return_figures():
         list (dict): list containing the four plotly visualizations
 
     """
-    # Plotting flu shot locations
+    # Loading public health clinics
     p_clinics = pd.read_json('https://data.cityofchicago.org/resource/kcki-hnch.json')
 
     # Loading Flu Shot Locations - Current Season Calendar
@@ -37,20 +37,24 @@ def return_figures():
     # Loading Public Health Statistics- Diabetes hospitalizations in Chicago, 2000 - 2011
     diabetes_df = pd.read_json('https://data.cityofchicago.org/resource/vekt-28b5.json')
 
-    # Requestin Mapbox Access Token
+    # uploading & cleaning zip coordinates
+    covid_df = pd.read_json(': // data.cityofchicago.org / resource / yhhz - zm2v.json')
+    covid_df['zip_code'] = covid_df['zip_code'].astype('str')
+
+    # Requesting Mapbox Access Token
     mapbox_access_token = "pk.eyJ1IjoiYWNydWNldHRhIiwiYSI6ImNrOTRvbGxwazBmYjIzaXAzYjVqeXl5dHgifQ.xIYZveielGt7Nm0-ljj_9Q"
 
-    # Flu shot locations
+    # Flu shot latitude & longitude for Mapbox
     site_lat = flu_loc['latitude']
     site_lon = flu_loc['longitude']
     locations_name = flu_loc['facility_name']
 
-    # Public health clinics
+    # Public health clinics latitude & longitude for Mapbox
     clinic_lat = p_clinics['latitude']
     clinic_lon = p_clinics['longitude']
     clinic_name = p_clinics['clinic_type']
 
-    # Mental health clinics
+    # Mental health clinics latitude & longitude for Mapbox
     mental_lat = mental_health_loc['latitude']
     mental_lon = mental_health_loc['longitude']
     mental_name = mental_health_loc['site_name']
