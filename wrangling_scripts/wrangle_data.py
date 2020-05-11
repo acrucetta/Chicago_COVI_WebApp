@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.graph_objs as go
+from plotly.subplots import make_subplots
 
 ''' 
 Modules to Install:
@@ -34,12 +35,9 @@ def return_figures():
     # Loading locations for Mental Health Clinics
     mental_health_loc = pd.read_json('https://data.cityofchicago.org/resource/g7ng-5vwp.json')
 
-    # Loading Public Health Statistics- Diabetes hospitalizations in Chicago, 2000 - 2011
-    diabetes_df = pd.read_json('https://data.cityofchicago.org/resource/vekt-28b5.json')
-
-    # uploading & cleaning zip coordinates
-    covid_df = pd.read_json(': // data.cityofchicago.org / resource / yhhz - zm2v.json')
-    covid_df['zip_code'] = covid_df['zip_code'].astype('str')
+    # NY Times COVID Daily Cases
+    url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv'
+    nyt_daily_covid = pd.read_csv(url, error_bad_lines=False)
 
     # Requesting Mapbox Access Token
     mapbox_access_token = "pk.eyJ1IjoiYWNydWNldHRhIiwiYSI6ImNrOTRvbGxwazBmYjIzaXAzYjVqeXl5dHgifQ.xIYZveielGt7Nm0-ljj_9Q"
@@ -58,6 +56,21 @@ def return_figures():
     mental_lat = mental_health_loc['latitude']
     mental_lon = mental_health_loc['longitude']
     mental_name = mental_health_loc['site_name']
+
+    ## Cleaning Chicago COVID daily values from NYT
+
+    # Filtering daily cases for Cook County & Illinois
+    chi_nyt_covid = nyt_daily_covid[(nyt_daily_covid.county == "Cook") & (nyt_daily_covid.state == "Illinois")]
+    chi_nyt_covid.date = pd.to_datetime(chi_nyt_covid.date)
+
+    # Creating daily difference in cases and moving average for every 7 days
+    chi_nyt_covid['new_daily_cases'] = chi_nyt_covid['cases'] - chi_nyt_covid['cases'].shift(+1)
+    chi_nyt_covid['new_death_cases'] = chi_nyt_covid['deaths'] - chi_nyt_covid['deaths'].shift(+1)
+    chi_nyt_covid['MA5_Cases'] = round(chi_nyt_covid.new_daily_cases.rolling(7).mean())
+    chi_nyt_covid['MA5_Deaths'] = round(chi_nyt_covid.new_death_cases.rolling(7).mean())
+
+    # Setting date as index
+    chi_nyt_covid.set_index('date')
 
     # Plotting Chicago map
     data_one = [go.Scattermapbox(
@@ -123,7 +136,46 @@ def return_figures():
             style='light'
         ))
 
+    # Creating second plot with daily COVID cases
+    fig2 = make_subplots(rows=2, cols=1, shared_xaxes=True, vertical_spacing=0.1)
+
+    fig2.add_trace(go.Scatter(name="Daily Cases", x=chi_nyt_covid.date,
+                              y=chi_nyt_covid.new_daily_cases), row=1, col=1)
+
+    fig2.add_trace(go.Scatter(name="7-day avg. cases", x=chi_nyt_covid.date,
+                              y=chi_nyt_covid['MA5_Cases'], line=dict(color='green', width=1)),
+                   row=1, col=1)
+
+    fig2.add_trace(go.Scatter(name="Daily Deaths", x=chi_nyt_covid.date,
+                              y=chi_nyt_covid.new_death_cases),
+                   row=2, col=1)
+
+    fig2.add_trace(go.Scatter(name="7-day avg. deaths", x=chi_nyt_covid.date,
+                              y=chi_nyt_covid['MA5_Deaths'], line=dict(color='black', width=1)),
+                   row=2, col=1)
+
+    fig2.update_layout(height=600, width=600,
+                       title='COVID-19 Daily Cases & Deaths in Chicago',
+                       hovermode="x")
+
+    fig2.update_traces(mode="lines", hovertemplate=None)
+
+    fig2.update_xaxes(
+        rangeslider_visible=False,
+        rangeselector=dict(
+            buttons=list([
+                dict(count=14, label="2w", step="day", stepmode="backward"),
+                dict(count=1, label="1m", step="month", stepmode="backward"),
+                dict(count=3, label="3m", step="month", stepmode="todate"),
+                dict(step="all")
+            ])
+        )
+    )
+    # Converting to dictionary to make it easier for Flask to load
+    data_two = fig2.to_dict()
+
     figures = []
     figures.append(dict(data=data_one, layout=layout_one))
+    figures.append(data_two)
 
     return figures

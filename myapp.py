@@ -2,8 +2,6 @@ from flask import Flask, render_template,request
 from wrangling_scripts.wrangle_data import return_figures
 import json
 import plotly
-import folium
-import pandas as pd
 
 app = Flask(__name__)
 
