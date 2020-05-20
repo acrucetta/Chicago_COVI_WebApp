@@ -167,15 +167,13 @@ def return_figures():
                 dict(count=14, label="2w", step="day", stepmode="backward"),
                 dict(count=1, label="1m", step="month", stepmode="backward"),
                 dict(count=3, label="3m", step="month", stepmode="todate"),
-                dict(step="all")
-            ])
-        )
-    )
+                dict(step="all")]))),
+
     # Converting to dictionary to make it easier for Flask to load
     data_two = fig2.to_dict()
 
     figures = []
-    figures.append(dict(data=data_one, layout=layout_one))
+    figures.append(dict(data=[data_one], layout=layout_one))
     figures.append(data_two)
 
     return figures

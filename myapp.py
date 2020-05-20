@@ -10,14 +10,12 @@ app = Flask(__name__)
 def home():
 
     figures = return_figures()
-
     ids = ['figure-{}'.format(i) for i, _ in enumerate(figures)]
 
     figuresJSON = json.dumps(figures, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template('index.html',
                            ids=ids,
                            figuresJSON=figuresJSON)
-
 
 if __name__ == '__main__':
     app.debug = True

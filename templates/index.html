@@ -4,106 +4,75 @@
 
 <head>
 
-<title>COVID Dashboard</title>
+    <title>COVID Dashboard</title>
 
-<!--import script files needed from plotly and bootstrap-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-<script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!--import script files needed from plotly and bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"><script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
 
 </head>
 
 <body>
 
-<!--navbar links-->     
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-   <a class="navbar-brand" href="#">COVID Dashboard</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" 
-  data-target="#navbarTogglerDemo02" 
-  aria-controls="navbarTogglerDemo02" aria-expanded="false" 
-  aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" href="https://www.udacity.com">Udacity</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Other Link</a>
-      </li>
-    </ul>
-  </div>
+<!--navbar links-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Github</a>
+            </li></ul>
+    </div>
 </nav>
 
-<!--middle section-->       
-<div class="row">
 
-    <!--social media buttons column-->      
-    <div class="col-1 border-right">
-        <div id="follow-me" class="mt-3">
-            <a href="https://www.linkedin.com/in/andres-crucetta/">
-                <img src="/static/img/linkedinlogo.png" alt="linkedin" class="img-fluid mb-4 ml-2">
-            </a>
-            <a href="https://github.com/acrucetta">
-                <img src="/static/img/githublogo.png" alt="github" class="img-fluid ml-2">
-            </a>
-        </div>
-    </div>
+<!--Header-->
+<div class="jumbotron">
+    <h1 class="display-6">Welcome to an outline of COVID in Chicago</h1>
+    <p class="lead">The dashboards below include ways in which COVID has impacted Chicago and what we can do about it. </p>
+    <hr class="my-1">
+</div>
 
-    <!--visualizations column-->        
-    <div class="col-11">
-
-        <!--chart descriptions-->       
-        <div id="middle-info" class="mt-3">
-
-            <h2 id="tag-line">An overview of COVID-19 in Chicago</h2>
-            <h4 id="tag-line" class="text-muted">By Andres</h4>
-            
-        </div>
-        
-        <!--charts-->       
-        <div id="charts" class="container mt-2 text-center">
-                    
-            <!--top two charts-->       
-            <div class="row">
-                <div class="col-6">
+<!--Main Content-->
+<div class = 'container-fluid'>
+    <div class = 'row'>
+        <div class = 'col-8'>
+            <div class="card">
+                <h5 class="card-header">Daily Cases in Chicago</h5>
+                <div class="card-body">
                     <div id="{{ids[1]}}"></div>
                 </div>
-                <div class="col-6">
+            </div>
+        </div>
+        <div class = 'col-4'>
+            <div class="card">
+                <h5 class="card-header">Daily Cases in Chicago</h5>
+                <div class="card-body">
                     <div id="{{ids[0]}}"></div>
                 </div>
             </div>
-
-            <!--bottom two charts-->        
-            <div class="row mb-6">
-                <div class="col-6"> 
-                    <div id="chart3">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div id="chart4">
-                    </div>
-                <div>
-            </div>
-        
         </div>
-    <div>
+    </div>
 </div>
 
-<!--footer section-->               
-<div id="footer" class="container"></div>
-
-</body>
-
-
 <footer>
+
+
 
     <script type="text/javascript">
         // plots the figure with id
