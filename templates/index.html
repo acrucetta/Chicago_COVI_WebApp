@@ -7,7 +7,6 @@
     <title>COVID Dashboard</title>
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!--import script files needed from plotly and bootstrap-->
@@ -15,9 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 </head>
 
@@ -50,29 +48,33 @@
 
 <!--Main Content-->
 <div class = 'container-fluid'>
-    <div class = 'row'>
-        <div class = 'col-8'>
-            <div class="card">
-                <h5 class="card-header">Daily Cases in Chicago</h5>
+    <div id = 'charts' class = 'row'>
+        <div class = 'col-6'>
+            <div class="card shadow mb-4">
+                <h5 class="card-header py-3">Daily Cases in Chicago</h5>
                 <div class="card-body">
-                    <div id="{{ids[1]}}"></div>
+                    <div id="{{ids[0]}}"></div>
                 </div>
             </div>
         </div>
-        <div class = 'col-4'>
-            <div class="card">
-                <h5 class="card-header">Daily Cases in Chicago</h5>
-                <div class="card-body">
-                    <div id="{{ids[0]}}"></div>
+        <div class = 'col-6'>
+            <div class="card shadow mb-4">
+                <h5 class="card-header">Chicago Public Health Account</h5>
+                <div class="card-body text-center">
+                    <a class="twitter-timeline" data-width="500" data-height="400" data-theme="light" href="https://twitter.com/ChiPublicHealth?ref_src=twsrc%5Etfw">Tweets by ChiPublicHealth</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!--footer section-->
+<div id="footer" class="container"></div>
+
+</body>
+
+
 <footer>
-
-
 
     <script type="text/javascript">
         // plots the figure with id

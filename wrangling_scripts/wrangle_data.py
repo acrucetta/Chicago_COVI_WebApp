@@ -57,7 +57,7 @@ def return_figures():
     mental_lon = mental_health_loc['longitude']
     mental_name = mental_health_loc['site_name']
 
-    ## Cleaning Chicago COVID daily values from NYT
+    # Cleaning Chicago COVID daily values from NYT
 
     # Filtering daily cases for Cook County & Illinois
     chi_nyt_covid = nyt_daily_covid[(nyt_daily_covid.county == "Cook") & (nyt_daily_covid.state == "Illinois")]
@@ -120,10 +120,10 @@ def return_figures():
         )]
 
     layout_one = dict(
-        title='Community Health Resources in Chicago',
         autosize=True,
         hovermode='closest',
         showlegend=True,
+        legend_orientation="h",
         mapbox=dict(
             accesstoken=mapbox_access_token,
             bearing=0,
@@ -143,7 +143,7 @@ def return_figures():
                               y=chi_nyt_covid.new_daily_cases), row=1, col=1)
 
     fig2.add_trace(go.Scatter(name="7-day avg. cases", x=chi_nyt_covid.date,
-                              y=chi_nyt_covid['MA5_Cases'], line=dict(color='green', width=1)),
+                              y=chi_nyt_covid['MA5_Cases'], fill='tozeroy', line=dict(color='green', width=1)),
                    row=1, col=1)
 
     fig2.add_trace(go.Scatter(name="Daily Deaths", x=chi_nyt_covid.date,
@@ -151,12 +151,10 @@ def return_figures():
                    row=2, col=1)
 
     fig2.add_trace(go.Scatter(name="7-day avg. deaths", x=chi_nyt_covid.date,
-                              y=chi_nyt_covid['MA5_Deaths'], line=dict(color='black', width=1)),
+                              y=chi_nyt_covid['MA5_Deaths'],fill='tozeroy', line=dict(color='black', width=1)),
                    row=2, col=1)
 
-    fig2.update_layout(height=600, width=600,
-                       title='COVID-19 Daily Cases & Deaths in Chicago',
-                       hovermode="x")
+    fig2.update_layout(height=600, width=600,hovermode="x",legend_orientation="h")
 
     fig2.update_traces(mode="lines", hovertemplate=None)
 
@@ -167,13 +165,13 @@ def return_figures():
                 dict(count=14, label="2w", step="day", stepmode="backward"),
                 dict(count=1, label="1m", step="month", stepmode="backward"),
                 dict(count=3, label="3m", step="month", stepmode="todate"),
-                dict(step="all")]))),
+                dict(step="all")])))
 
     # Converting to dictionary to make it easier for Flask to load
     data_two = fig2.to_dict()
 
     figures = []
-    figures.append(dict(data=[data_one], layout=layout_one))
+    figures.append(dict(data=data_one, layout=layout_one))
     figures.append(data_two)
 
     return figures
