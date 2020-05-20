@@ -72,6 +72,7 @@ def return_figures():
     # Setting date as index
     chi_nyt_covid.set_index('date')
 
+    ''' 
     # Plotting Chicago map
     data_one = [go.Scattermapbox(
         lat=site_lat,
@@ -135,29 +136,16 @@ def return_figures():
             zoom=12,
             style='light'
         ))
+    '''
 
     # Creating second plot with daily COVID cases
-    fig2 = make_subplots(rows=2, cols=1, shared_xaxes=True, vertical_spacing=0.1)
-
-    fig2.add_trace(go.Scatter(name="Daily Cases", x=chi_nyt_covid.date,
-                              y=chi_nyt_covid.new_daily_cases), row=1, col=1)
-
-    fig2.add_trace(go.Scatter(name="7-day avg. cases", x=chi_nyt_covid.date,
-                              y=chi_nyt_covid['MA5_Cases'], fill='tozeroy', line=dict(color='green', width=1)),
-                   row=1, col=1)
-
-    fig2.add_trace(go.Scatter(name="Daily Deaths", x=chi_nyt_covid.date,
-                              y=chi_nyt_covid.new_death_cases),
-                   row=2, col=1)
-
-    fig2.add_trace(go.Scatter(name="7-day avg. deaths", x=chi_nyt_covid.date,
-                              y=chi_nyt_covid['MA5_Deaths'],fill='tozeroy', line=dict(color='black', width=1)),
-                   row=2, col=1)
-
-    fig2.update_layout(height=600, width=600,hovermode="x",legend_orientation="h")
-
+    trace_1 = go.Scatter(name = "Daily Cases", x=chi_nyt_covid.date,y= chi_nyt_covid.new_daily_cases)
+    trace_2 = go.Scatter(name="7-day avg. cases", x=chi_nyt_covid.date, y=chi_nyt_covid['MA5_Cases'],
+                             fill='tozeroy', line=dict(color='green', width=1))
+    data_2 = [trace_1, trace_2]
+    layout_2 = go.Layout(autosize=True,hovermode="x",legend_orientation="h")
+    fig2 = go.Figure(data = data_2, layout = layout_2)
     fig2.update_traces(mode="lines", hovertemplate=None)
-
     fig2.update_xaxes(
         rangeslider_visible=False,
         rangeselector=dict(
@@ -168,10 +156,30 @@ def return_figures():
                 dict(step="all")])))
 
     # Converting to dictionary to make it easier for Flask to load
-    data_two = fig2.to_dict()
+    figure_2 = fig2.to_dict()
+
+    # Creating second plot with daily COVID cases
+    trace_3 = trace_two = go.Scatter(name="Daily Deaths", x=chi_nyt_covid.date, y=chi_nyt_covid.new_death_cases)
+    trace_4 = go.Scatter(name = "7-day avg. deaths" , x=chi_nyt_covid.date, y=chi_nyt_covid['MA5_Deaths'],
+                                      fill='tozeroy',line=dict(color='black', width=1))
+    data_3 = [trace_3, trace_4]
+    layout_3 = go.Layout(autosize=True, hovermode="x", legend_orientation="h")
+    fig3 = go.Figure(data=data_3, layout=layout_3)
+    fig3.update_traces(mode="lines", hovertemplate=None)
+    fig3.update_xaxes(
+        rangeslider_visible=False,
+        rangeselector=dict(
+            buttons=list([
+                dict(count=14, label="2w", step="day", stepmode="backward"),
+                dict(count=1, label="1m", step="month", stepmode="backward"),
+                dict(count=3, label="3m", step="month", stepmode="todate"),
+                dict(step="all")])))
+
+    # Converting to dictionary to make it easier for Flask to load
+    figure_3 = fig3.to_dict()
 
     figures = []
-    figures.append(dict(data=data_one, layout=layout_one))
-    figures.append(data_two)
-
+    #figures.append(dict(data=data_one, layout=layout_one))
+    figures.append(figure_2)
+    figures.append(figure_3)
     return figures
