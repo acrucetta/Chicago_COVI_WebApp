@@ -143,7 +143,7 @@ def return_figures():
     trace_2 = go.Scatter(name="7-day avg. cases", x=chi_nyt_covid.date, y=chi_nyt_covid['MA5_Cases'],
                              fill='tozeroy', line=dict(color='green', width=1))
     data_2 = [trace_1, trace_2]
-    layout_2 = go.Layout(autosize=True,hovermode="x",legend_orientation="h")
+    layout_2 = go.Layout(title = "Daily Cases", autosize=True,hovermode="x",legend_orientation="h")
     fig2 = go.Figure(data = data_2, layout = layout_2)
     fig2.update_traces(mode="lines", hovertemplate=None)
     fig2.update_xaxes(
@@ -163,7 +163,7 @@ def return_figures():
     trace_4 = go.Scatter(name = "7-day avg. deaths" , x=chi_nyt_covid.date, y=chi_nyt_covid['MA5_Deaths'],
                                       fill='tozeroy',line=dict(color='black', width=1))
     data_3 = [trace_3, trace_4]
-    layout_3 = go.Layout(autosize=True, hovermode="x", legend_orientation="h")
+    layout_3 = go.Layout(title = "Daily Deaths", autosize=True, hovermode="x", legend_orientation="h")
     fig3 = go.Figure(data=data_3, layout=layout_3)
     fig3.update_traces(mode="lines", hovertemplate=None)
     fig3.update_xaxes(

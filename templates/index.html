@@ -46,59 +46,98 @@
     <hr class="my-1">
 </div>
 
+<!--Side Navbar-->
+
+
 <!--Main Content-->
 <div class = 'container-fluid'>
-<h4 class="display-6 ml-2 mb-3">Where we are today: <span id="datetime"></span></h4>
-</div>
-
-<div class = 'container-fluid'>
-    <div id = 'charts' class = 'row'>
-        <div class = 'col-4'>
-            <div class="card shadow mb-4">
-                <h5 class="card-header py-3">Daily Cases</h5>
-                <div class="card-body">
-                    <div id="{{ids[0]}}"></div>
-                </div>
-            </div>
-        </div>
-        <div class = 'col-4'>
-            <div class="card shadow mb-4">
-                <h5 class="card-header py-3">Daily Deaths</h5>
-                <div class="card-body">
-                    <div id="{{ids[1]}}"></div>
-                </div>
-            </div>
-        </div>
-        <div class = 'col-4'>
-            <div class="card shadow mb-4">
-                <h5 class="card-header">Chicago Public Health Account</h5>
-                <div class="card-body text-center">
-                    <a class="twitter-timeline" data-width="500" data-height="400" data-theme="light" href="https://twitter.com/ChiPublicHealth?ref_src=twsrc%5Etfw">Tweets by ChiPublicHealth</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
+    <div class = 'row'>
+        <div class = 'col mb-3'>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Phase 2: Stay at Home</div>
             </div>
         </div>
     </div>
-</div>
-
-<div class = 'container-fluid'>
-<h4 class="display-6 ml-2 mb-3">Where we want to go</h4>
-</div>
-
-<div class = 'container-fluid'>
-    <div id = 'charts' class = 'row'>
-        <div class = 'col-4'>
-            <div class="card shadow mb-4">
-                <h5 class="card-header py-3">Daily Cases</h5>
-                <div class="card-body">
-                    <div id="{{ids[0]}}"></div>
+    <div class = 'row'>
+        <div class="col-sm-2">
+            <nav id="navbar-test" class="navbar navbar-light bg-light">
+                <a class="navbar-brand" href="#"></a>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#item-1">Current Status</a>
+                    <a class="nav-link" href="#item-2">Phase 3: Cautiously Reopen</a>
+                    <a class="nav-link" href="#item-2">Phase 4: Revitalization</a>
+                </nav>
+            </nav>
+        </div>
+        <div class="col-10">
+            <div id = 'charts' class = 'row'>
+                <div class = 'col-4'>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div id="{{ids[0]}}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class = 'col-4'>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div id="{{ids[1]}}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class = 'col-4'>
+                    <div class="card shadow mb-4">
+                        <h5 class="card-header">Chicago Public Health Account</h5>
+                        <div class="card-body text-center">
+                            <a class="twitter-timeline" data-width="500" data-height="400" data-theme="light" href="https://twitter.com/ChiPublicHealth?ref_src=twsrc%5Etfw">Tweets by ChiPublicHealth</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class = 'col-4'>
-            <div class="card shadow mb-4">
-                <h5 class="card-header py-3">Daily Deaths</h5>
-                <div class="card-body">
-                    <div id="{{ids[1]}}"></div>
+            <div id = 'test' class = 'row mb-2'>
+                <div class = 'col-4'>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <p>Test</p>
+                        </div>
+                    </div>
+                </div>
+                <div class = 'col-4'>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <p>Test</p>
+                        </div>
+                    </div>
+                </div>
+                <div class = 'col-4'>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <p>Test</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id = 'test_2' class = 'row mb-2'>
+                <div class = 'col-4'>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <p>Test</p>
+                        </div>
+                    </div>
+                </div>
+                <div class = 'col-4'>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <p>Test</p>
+                        </div>
+                    </div>
+                </div>
+                <div class = 'col-4'>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <p>Test</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
