@@ -26,36 +26,13 @@ def return_figures():
         list (dict): list containing the four plotly visualizations
 
     """
-    # Loading public health clinics
-    p_clinics = pd.read_json('https://data.cityofchicago.org/resource/kcki-hnch.json')
-
-    # Loading Flu Shot Locations - Current Season Calendar
-    flu_loc = pd.read_json('https://data.cityofchicago.org/resource/uks9-jgth.json')
-
-    # Loading locations for Mental Health Clinics
-    mental_health_loc = pd.read_json('https://data.cityofchicago.org/resource/g7ng-5vwp.json')
-
     # NY Times COVID Daily Cases
     url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv'
     nyt_daily_covid = pd.read_csv(url, error_bad_lines=False)
 
-    # Requesting Mapbox Access Token
-    mapbox_access_token = "pk.eyJ1IjoiYWNydWNldHRhIiwiYSI6ImNrOTRvbGxwazBmYjIzaXAzYjVqeXl5dHgifQ.xIYZveielGt7Nm0-ljj_9Q"
-
-    # Flu shot latitude & longitude for Mapbox
-    site_lat = flu_loc['latitude']
-    site_lon = flu_loc['longitude']
-    locations_name = flu_loc['facility_name']
-
-    # Public health clinics latitude & longitude for Mapbox
-    clinic_lat = p_clinics['latitude']
-    clinic_lon = p_clinics['longitude']
-    clinic_name = p_clinics['clinic_type']
-
-    # Mental health clinics latitude & longitude for Mapbox
-    mental_lat = mental_health_loc['latitude']
-    mental_lon = mental_health_loc['longitude']
-    mental_name = mental_health_loc['site_name']
+    # Chicago Hospital Capacity
+    chi_hospitals = pd.read_json('https://data.cityofchicago.org/resource/f3he-c6sv.json')
+    chi_hospitals.date = pd.to_datetime(chi_hospitals.date)
 
     # Cleaning Chicago COVID daily values from NYT
 
@@ -71,72 +48,6 @@ def return_figures():
 
     # Setting date as index
     chi_nyt_covid.set_index('date')
-
-    ''' 
-    # Plotting Chicago map
-    data_one = [go.Scattermapbox(
-        lat=site_lat,
-        lon=site_lon,
-        legendgroup="Flu Shot Locations",
-        name="Flu Shot Locations",
-        mode='markers',
-        marker=go.scattermapbox.Marker(
-            size=9,
-            color='green',
-            opacity=0.6,
-            symbol='pharmacy'
-        ),
-        text=locations_name,
-        hoverinfo='text',
-    ),
-        go.Scattermapbox(
-            lat=clinic_lat,
-            lon=clinic_lon,
-            legendgroup="Public Clinics",
-            mode='markers',
-            name='Public Clinics',
-            marker=go.scattermapbox.Marker(
-                size=10,
-                color='blue',
-                opacity=1,
-                symbol="hospital"
-            ),
-            text=clinic_name,
-            hoverinfo='text'
-        ),
-        go.Scattermapbox(
-            lat=mental_lat,
-            lon=mental_lon,
-            legendgroup="Mental Health Hospitals",
-            name='Mental Health Hospitals',
-            mode='markers',
-            marker=go.scattermapbox.Marker(
-                size=10,
-                color='yellow',
-                opacity=1,
-                symbol="circle"
-            ),
-            text=mental_name,
-            hoverinfo='text'
-        )]
-
-    layout_one = dict(
-        autosize=True,
-        hovermode='closest',
-        showlegend=True,
-        legend_orientation="h",
-        mapbox=dict(
-            accesstoken=mapbox_access_token,
-            bearing=0,
-            center=dict(
-                lat=41.8781,
-                lon=-87.6298
-            ),
-            pitch=0,
-            zoom=12,
-            style='light'
-        ))
-    '''
 
     # Creating second plot with daily COVID cases
     trace_1 = go.Scatter(name = "Daily Cases", x=chi_nyt_covid.date,y= chi_nyt_covid.new_daily_cases)
@@ -155,15 +66,12 @@ def return_figures():
                 dict(count=3, label="3m", step="month", stepmode="todate"),
                 dict(step="all")])))
 
-    # Converting to dictionary to make it easier for Flask to load
-    figure_2 = fig2.to_dict()
-
     # Creating second plot with daily COVID cases
-    trace_3 = trace_two = go.Scatter(name="Daily Deaths", x=chi_nyt_covid.date, y=chi_nyt_covid.new_death_cases)
+    trace_3 = go.Scatter(name="Daily Deaths", x=chi_nyt_covid.date, y=chi_nyt_covid.new_death_cases)
     trace_4 = go.Scatter(name = "7-day avg. deaths" , x=chi_nyt_covid.date, y=chi_nyt_covid['MA5_Deaths'],
                                       fill='tozeroy',line=dict(color='black', width=1))
     data_3 = [trace_3, trace_4]
-    layout_3 = go.Layout(title = "Daily Deaths", autosize=True, hovermode="x", legend_orientation="h")
+    layout_3 = go.Layout(title = "Daily Deaths", autosize=True, hovermode="x", showlegend = False)
     fig3 = go.Figure(data=data_3, layout=layout_3)
     fig3.update_traces(mode="lines", hovertemplate=None)
     fig3.update_xaxes(
@@ -175,11 +83,90 @@ def return_figures():
                 dict(count=3, label="3m", step="month", stepmode="todate"),
                 dict(step="all")])))
 
+    # Plotting time-lapse
+    fig_hospitals = go.Figure()
+
+    fig_hospitals.add_trace(go.Scatter(name="COVID Patients in Ventilators", x=chi_hospitals.date,
+                                       y=chi_hospitals.ventilators_in_use_covid_19_patients))
+
+    fig_hospitals.add_trace(go.Scatter(
+        x=[min(chi_hospitals.date), max(chi_hospitals.date)],
+        y=[450, 450],
+        mode="lines+markers+text",
+        name="Limit to go to phase 3",
+        textposition="bottom center"
+    ))
+
+    fig_hospitals.add_annotation(
+        x=max(chi_hospitals.date),
+        y=chi_hospitals.ventilators_in_use_covid_19_patients[chi_hospitals.date == max(chi_hospitals.date)][0],
+        text="Patients in Ventilators")
+
+    fig_hospitals.add_annotation(
+        x=max(chi_hospitals.date),
+        y=450,
+        text="Limit for Phase 3")
+
+    fig_hospitals.update_layout(title="COVID Patients in Ventilators", autosize=True, hovermode="x", showlegend = False)
+
+    fig_hospitals.update_traces(mode="lines", hovertemplate=None)
+
+    fig_hospitals.update_xaxes(
+        rangeslider_visible=False,
+        rangeselector=dict(
+            buttons=list([
+                dict(count=14, label="2w", step="day", stepmode="backward"),
+                dict(count=1, label="1m", step="month", stepmode="backward"),
+                dict(count=3, label="3m", step="month", stepmode="todate"),
+                dict(step="all")])))
+
+    # Plotting time-lapse
+    fig_icu = go.Figure()
+
+    fig_icu.add_trace(go.Scatter(name="COVID Patients in ICU Beds", x=chi_hospitals.date,
+                                 y=chi_hospitals.icu_beds_in_use_covid_19))
+
+    fig_icu.add_trace(go.Scatter(
+        x=[min(chi_hospitals.date), max(chi_hospitals.date)],
+        y=[600, 600],
+        mode="lines+markers+text",
+        name="Limit to go to phase 3",
+        textposition="bottom center"
+    ))
+
+    fig_icu.add_annotation(
+        x=max(chi_hospitals.date),
+        y=chi_hospitals.icu_beds_in_use_covid_19[chi_hospitals.date == max(chi_hospitals.date)][0],
+        text="Patients in ICU Beds")
+
+    fig_icu.add_annotation(
+        x=max(chi_hospitals.date),
+        y=600,
+        text="Limit for Phase 3")
+
+    fig_icu.update_layout(title="COVID Patients in ICU Beds", autosize=True, hovermode="x", showlegend = False)
+
+    fig_icu.update_traces(mode="lines", hovertemplate=None)
+
+    fig_icu.update_xaxes(
+        rangeslider_visible=False,
+        rangeselector=dict(
+            buttons=list([
+                dict(count=14, label="2w", step="day", stepmode="backward"),
+                dict(count=1, label="1m", step="month", stepmode="backward"),
+                dict(count=3, label="3m", step="month", stepmode="todate"),
+                dict(step="all")])))
+
     # Converting to dictionary to make it easier for Flask to load
+    figure_2 = fig2.to_dict()
     figure_3 = fig3.to_dict()
+    figure_hospitals = fig_hospitals.to_dict()
+    figure_icu = fig_icu.to_dict()
 
     figures = []
-    #figures.append(dict(data=data_one, layout=layout_one))
     figures.append(figure_2)
     figures.append(figure_3)
+    figures.append(figure_hospitals)
+    figures.append(figure_icu)
+
     return figures

@@ -3,7 +3,6 @@
 <html>
 
 <head>
-
     <title>COVID Dashboard</title>
 
     <!-- Custom fonts for this template -->
@@ -42,14 +41,13 @@
 <!--Header-->
 <div class="jumbotron">
     <h1 class="display-6">Welcome to an outline of COVID in Chicago</h1>
-    <p class="lead">The dashboards below include ways in which COVID has impacted Chicago and what we can do about it. </p>
+    <p class="lead">The dashboard belows shows Chicago's current status and what it takes to open it back.</p>
     <hr class="my-1">
 </div>
 
-<!--Side Navbar-->
-
-
 <!--Main Content-->
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="1"></body>
+
 <div class = 'container-fluid'>
     <div class = 'row'>
         <div class = 'col mb-3'>
@@ -59,83 +57,35 @@
         </div>
     </div>
     <div class = 'row'>
-        <div class="col-sm-2">
-            <nav id="navbar-test" class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="#"></a>
-                <nav class="nav nav-pills flex-column">
-                    <a class="nav-link" href="#item-1">Current Status</a>
-                    <a class="nav-link" href="#item-2">Phase 3: Cautiously Reopen</a>
-                    <a class="nav-link" href="#item-2">Phase 4: Revitalization</a>
-                </nav>
-            </nav>
-        </div>
-        <div class="col-10">
-            <div id = 'charts' class = 'row'>
-                <div class = 'col-4'>
+        <div class="col-12">
+            <div id = 'current' class = 'row mb-3'>
+                <div class = 'col-6'>
                     <div class="card shadow">
                         <div class="card-body">
                             <div id="{{ids[0]}}"></div>
                         </div>
                     </div>
                 </div>
-                <div class = 'col-4'>
+                <div class = 'col-6'>
                     <div class="card shadow">
                         <div class="card-body">
                             <div id="{{ids[1]}}"></div>
                         </div>
                     </div>
                 </div>
-                <div class = 'col-4'>
-                    <div class="card shadow mb-4">
-                        <h5 class="card-header">Chicago Public Health Account</h5>
-                        <div class="card-body text-center">
-                            <a class="twitter-timeline" data-width="500" data-height="400" data-theme="light" href="https://twitter.com/ChiPublicHealth?ref_src=twsrc%5Etfw">Tweets by ChiPublicHealth</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div id = 'test' class = 'row mb-2'>
-                <div class = 'col-4'>
+            <div id = 'current' class = 'row mb-3'>
+                <div class = 'col-6'>
                     <div class="card shadow">
                         <div class="card-body">
-                            <p>Test</p>
+                            <div id="{{ids[2]}}"></div>
                         </div>
                     </div>
                 </div>
-                <div class = 'col-4'>
+                <div class = 'col-6 mb-2'>
                     <div class="card shadow">
                         <div class="card-body">
-                            <p>Test</p>
-                        </div>
-                    </div>
-                </div>
-                <div class = 'col-4'>
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <p>Test</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id = 'test_2' class = 'row mb-2'>
-                <div class = 'col-4'>
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <p>Test</p>
-                        </div>
-                    </div>
-                </div>
-                <div class = 'col-4'>
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <p>Test</p>
-                        </div>
-                    </div>
-                </div>
-                <div class = 'col-4'>
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <p>Test</p>
+                            <div id="{{ids[3]}}"></div>
                         </div>
                     </div>
                 </div>
@@ -149,10 +99,7 @@
 
 </body>
 
-
-<footer>
-
-    <script type="text/javascript">
+<script type="text/javascript">
         // plots the figure with id
         // id much match the div id above in the html
         var figures = {{figuresJSON | safe}};
@@ -164,7 +111,7 @@
         }
     </script>
 
-    <script>
+<script>
         var dt = new Date();
         document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
     </script>
