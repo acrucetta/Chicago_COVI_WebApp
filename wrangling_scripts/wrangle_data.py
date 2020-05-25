@@ -1,6 +1,6 @@
 import pandas as pd
 import plotly.graph_objs as go
-from plotly.subplots import make_subplots
+from datetime import timedelta
 
 ''' 
 Modules to Install:
@@ -71,9 +71,13 @@ def return_figures():
     trace_4 = go.Scatter(name = "7-day avg. deaths" , x=chi_nyt_covid.date, y=chi_nyt_covid['MA5_Deaths'],
                                       fill='tozeroy',line=dict(color='black', width=1))
     data_3 = [trace_3, trace_4]
-    layout_3 = go.Layout(title = "Daily Deaths", autosize=True, hovermode="x", showlegend = False)
+
+    layout_3 = go.Layout(title = "Daily Deaths", autosize=True, hovermode="x", showlegend = True)
+
     fig3 = go.Figure(data=data_3, layout=layout_3)
+
     fig3.update_traces(mode="lines", hovertemplate=None)
+
     fig3.update_xaxes(
         rangeslider_visible=False,
         rangeselector=dict(
