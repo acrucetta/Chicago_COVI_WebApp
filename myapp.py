@@ -20,6 +20,18 @@ def home():
                            ids=ids,
                            figuresJSON=figuresJSON)
 
+@app.route('/phases')
+def phases():
+    figures = return_figures()
+
+    # plot ids for the html id tag
+    ids = ['figure-{}'.format(i) for i, _ in enumerate(figures)]
+
+    # Convert the plotly figures to JSON for javascript in html template
+    figuresJSON = json.dumps(figures, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return render_template('phases.html', ids=ids,figuresJSON=figuresJSON)
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
