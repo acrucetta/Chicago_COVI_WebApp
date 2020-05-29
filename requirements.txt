@@ -1,6 +1,9 @@
 absl-py==0.2.2
 aiohttp==3.6.2
 alabaster==0.7.10
+anaconda-client==1.6.14
+anaconda-navigator==1.9.7
+anaconda-project==0.8.2
 appdirs==1.4.3
 appnope==0.1.0
 appscript==1.0.1
@@ -17,6 +20,7 @@ beautifulsoup4==4.9.0
 biosppy==0.5.1
 bitarray==0.8.1
 bkcharts==0.2
+blaze==0.11.3
 bleach==1.5.0
 bokeh==0.12.13
 boto==2.48.0
@@ -30,6 +34,7 @@ click==6.7
 click-plugins==1.1.1
 cligj==0.5.0
 cloudpickle==0.5.2
+clyent==1.2.2
 colorama==0.3.9
 commonmark==0.9.1
 conda==4.4.10

@@ -7,7 +7,4 @@
     <orderEntry type="library" name="R Skeletons" level="application" />
     <orderEntry type="library" name="R User Library" level="project" />
   </component>
-  <component name="PackageRequirementsSettings">
-    <option name="requirementsPath" value="requirements2.txt" />
-  </component>
 </module>
