@@ -37,7 +37,6 @@
     </div>
 </nav>
 
-
 <!--Header-->
 <div class="jumbotron">
     <h1 class="display-6">Welcome to an outline of COVID in Chicago</h1>
@@ -45,26 +44,19 @@
     <hr class="my-1">
 </div>
 
-<!--Navbar-->
-{%block navbar%}
-<ul class="nav nav-pills ml-3 mb-3" id="pills-tab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="pills-home-tab" href="/phases" action = '/phases' role="button" aria-controls="pills-home" aria-selected="true">Dashboard</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" href="/phases" action = '/phases' role="button" aria-controls="pills-profile" aria-selected="false">Chicago Recovery Plan</a>
-  </li>
-    <li class="nav-item" role="presentation">
-    <a class="nav-link" id="pills-contact-tab" href="#pills-contact" role="button" aria-controls="pills-contact" aria-selected="false">Resources</a>
-  </li>
+<ul class="nav nav-pills nav-stacked ml-3 mb-3">
+    <li class="nav-item">
+        <a href="#plotly-graphs" class="nav-link active">Dashboard</a>
+    </li>
+    <li class="nav-item">
+        <a href="#reopening-chicago" class="nav-link">Reopening Chicago</a>
+    </li>
 </ul>
-{%endblock%}
 
-<!--Main Content-->
-{%block content%}
+<!--Plotly Graphs-->
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1"></body>
 
-<div class = 'container-fluid'>
+<div class = 'container-fluid' id = "plotly-graphs">
     <div class = 'row'>
         <div class = 'col mb-3'>
             <div class="progress" style="height: 20px;">
@@ -109,10 +101,119 @@
         </div>
     </div>
 </div>
-{%endblock%}
+
+<!--Reopening Chicago-->
+
+<hr class="col solid">
+
+<div class="cds-text section ml-3 mr-3">
+    <div class="container-fluid text-block text-block-default">
+        <div class="row">
+            <div class="col p-0">
+                <h3>Reopening Chicago</h3>
+                <p class="lead">While we are still in phase two of the "Protecting Chicago" reopening framework, Mayor Lightfoot has announced that <a href="https://www.chicago.gov/city/en/depts/mayor/press_room/press_releases/2020/may/ReopeningJune3.html" target="_blank" rel="noopener noreferrer">Chicago is on track to begin reopening cautiously on June 3</a> and move to phase three. Throughout the COVID-19 crisis, we have been committed to basing our decisions on the science and data related to this disease and communicating our actions to the public in an open and transparent way. This chart shows how we plan to return to work and life as well as protecting our health during each phase.</p>
+                <p>&nbsp;</p>
+                <h3>How we determine the current phase</h3>
+                <p class='lead'>The details for each phase are being informed by economic and health data, and a combination of input from industry working groups, health experts and the public. The specific health criteria for transition between the latter phases will be established and released over the coming weeks to ensure&nbsp;the City is open and responsive to new data and information as it arises.&nbsp;</p>
+             </div>
+         </div>
+    </div>
+</div>
+
+<div class="cards-container section ml-3 mr-3" id = "reopening-chicago">
+    <div class="container-fluid px-0 card-hover card-small-header pb-5">
+       <div class="row">
+   
+       <div class="py-2 col-sm-4 col-md-3 col-lg-2dot4">    
+           <div class="card h-100  ">
+               <h4 class="card-header bg-primary text-white">PHASE I  <br>STRICT STAY-AT-HOME </h4>
+                 <img class="card-img-top align-self-center w-25 mt-1 mb-1" src="/templates/img/noun_Chicago_230548.png" alt="Card Image">
+                <div class="card-body ">
+                    <h4 class="card-title">Goal is to limit interactions to rapidly slow the spread of COVID-19</h4>
+                    <div class="card-text"><p><em>Limit the amount of contact with others</em></p>
+                        <p><strong>WORK</strong><em><br></em>Essential workers go to work; everyone else works from home<em><br></em><strong>LIFE</strong><em><br></em>Stay at home and limit going out to essential activities only</p>
+                        <p><strong>HEALTH</strong><em><br></em>Physically distance from anyone you do not live with, especially vulnerable friends and family</p></div>
+                 </div>   
+           </div>
+           </div>
+        
+       <div class="py-2 col-sm-4 col-md-3 col-lg-2dot4">    
+           <div class="card h-100  ">
+               <h4 class="card-header bg-primary text-white">PHASE II <br> STAY-AT-HOME<br></h4>
+                 <img class="card-img-top align-self-center w-25 mt-1 mb-1" src="/templates/img/noun_Chicago_230548 (1).png" alt="Card Image">
+                <div class="card-body ">
+                    <h4 class="card-title">Goal is to continue flattening the curve while safely being outside</h4>
+                    <div class="card-text"><p><em>(Guard against unsafe interactions with others)</em></p>
+                    <p><strong>WORK</strong><br>Essential workers go to work; everyone else works from home</p>
+                    <p><strong>LIFE</strong><br>Stay at home as much as possible</p>
+                    <p><strong>HEALTH</strong><br>Wear a face covering while outside your home</p>
+                    <p>Physically distance from anyone you do not live with, especially vulnerable friends and family</p></div>
+                 </div>   
+           </div>
+           </div>
+               
+       <div class="py-2 col-sm-4 col-md-3 col-lg-2dot4">    
+           <div class="card h-100  ">
+               <h4 class="card-header bg-primary text-white">PHASE III <br>CAUTIOUSLY REOPEN</h4>
+                 <img class="card-img-top align-self-center w-25 mt-1 mb-1" src="/templates/img/noun_Chicago_230548 (2).png" alt="Card Image">
+                <div class="card-body ">
+                    <h4 class="card-title">Goal is to thoughtfully begin to reopen Chicago safely</h4>
+                    <div class="card-text"><p><em>Strict physical distancing with some businesses reopening</em></p>
+                        <p><strong>WORK</strong><br>Non-essential workers begin to return to work in a phased way</p>
+                        <p>Select businesses, non-profits, city entities open with demonstrated, appropriate protections for workers and customers</p>
+                        <p><strong>LIFE</strong><br>When meeting others, physically distance and wear a face covering</p>
+                        <p>Non-business, social gatherings limited to <u>&lt;</u>10 persons</p>
+                        <p>Phased, limited public amenities begin to open&#8203;</p>
+                        <p><strong>HEALTH</strong><br>Stay at home if you feel ill or have come into contact with someone with COVID-19</p>
+                        <p>Continue to physically distance from vulnerable populations</p>
+   <p>Get tested if you have symptoms</p></div>
+                 </div>   
+           </div>
+           </div>
+               
+       <div class="py-2 col-sm-4 col-md-3 col-lg-2dot4">    
+           <div class="card h-100  ">
+               <h4 class="card-header bg-primary text-white">PHASE IV <br> GRADUALLY RESUME</h4>
+                 <img class="card-img-top align-self-center w-25 mt-1 mb-1" src="/templates/img/noun_Chicago_230548 (3).png" alt="Card Image">
+                <div class="card-body ">
+                    <h4 class="card-title">Goal is to further reopen Chicago while ensuring the safety of residents</h4>
+                    <div class="card-text"><p><em>Continued staggered reopening into a new normal</em></p>
+                        <p><strong>WORK</strong><br>Additional business and capacity restrictions are lifted with appropriate safeguards</p>
+                        <p><strong>LIFE</strong><br>Additional public amenities open</p>
+                        <p>Continue to wear a face covering and physically distance</p>
+                        <p><strong>HEALTH<br></strong>Continue to distance and allow vulnerable residents to shelter</p>
+                        <p>Get tested if you have symptoms or think you have had COVID-19</p></div>
+                 </div>   
+           </div>
+           </div>
+               
+       <div class="py-2 col-sm-4 col-md-3 col-lg-2dot4">    
+           <div class="card h-100  ">
+               <h4 class="card-header bg-primary text-white">PHASE V<br>PROTECT</h4>
+                <img class="card-img-top align-self-center w-25 mt-1 mb-1" src="/templates/img/noun_open_2721472 (1).png" alt="Card Image">
+                <div class="card-body ">
+                    <h4 class="card-title">Goal is to continue to maintain safety until COVID-19 is contained</h4>
+                    <div class="card-text"><p><em>Continue to protect vulnerable populations</em></p>
+                        <p><strong>WORK</strong><br>All businesses open</p>
+                        <p>Non-vulnerable individuals can resume working</p>
+                        <p><strong>LIFE</strong><br>Most activities resume with health safety in place</p>
+                        <p>Some events can resume</p>
+                        <p><strong>HEALTH</strong><br>Sign up for a vaccine on the COVID Coach web portal</p></div>
+                 </div>        
+           </div>
+           </div>
+       </div>
+   </div>
+   
+</div>
+
 
 <!--footer section-->
-<div id="footer" class="container"></div>
+<hr class="col solid">
+<div id="footer" class="container-fluid ml-6 mr-3">
+    <h6>Data analysis by <a href="https://medium.com/@andrescrucetta">Andres Crucetta</a></h6>
+    <h6>Reopening data by the <a href ="https://www.chicago.gov/city/en/sites/covid-19/home/reopening-chicago.html">City of Chicago</a></h6>
+</div>
 
 </body>
 
@@ -126,13 +227,12 @@
                 figures[i].data,
                 figures[i].layout || {});
         }
-    </script>
+</script>
 
 <script>
         var dt = new Date();
         document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
-    </script>
-
+</script>
 
 </footer>
 
