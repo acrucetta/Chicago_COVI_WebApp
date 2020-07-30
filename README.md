@@ -2,5 +2,5 @@
 
 
 ## Dashboard Demo
-![Dashboard Demo](https://gfycat.com/calculatingunsungblacklemur)
+![Dashboard Demo](https://gfycat.com/calculatingunsungblacklemur.gif)
 
