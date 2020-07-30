@@ -31,10 +31,10 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">YOUR_TITLE</h3>
+  <h3 align="center">Chicago COVID Re-opening</h3>
 
   <p align="center">
-    YOUR_SHORT_DESCRIPTION
+    A dashboard detailing Chicago's re-opening status and latest cases and deaths
     <br />
     <a href="https://github.com/acrucetta/chicago_COVID_app"><strong>Explore the docs »</strong></a>
     <br />
