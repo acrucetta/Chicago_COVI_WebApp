@@ -65,12 +65,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![product-screenshot](https://media.giphy.com/media/UqwoqfMAmZiV8vG6ea/giphy.gif)
+<img src="https://media.giphy.com/media/UqwoqfMAmZiV8vG6ea/giphy.gif" width="400" height="200" />
 
 Here's a blank template to get started:
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
 `github_username`, `repo`, `twitter_handle`, `email`
-
 
 ### Built With
 
