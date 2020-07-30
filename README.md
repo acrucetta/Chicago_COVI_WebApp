@@ -24,8 +24,6 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -38,14 +36,14 @@
   <p align="center">
     YOUR_SHORT_DESCRIPTION
     <br />
-    <a href="https://github.com/acrucetta/repo"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/acrucetta/chicago_COVID_app"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/acrucetta/repo">View Demo</a>
+    <a href="https://github.com/acrucetta/chicago_COVID_app">View Demo</a>
     ·
-    <a href="https://github.com/acrucetta/repo/issues">Report Bug</a>
+    <a href="https://github.com/acrucetta/chicago_COVID_app/issues">Report Bug</a>
     ·
-    <a href="https://github.com/acrucetta/repo/issues">Request Feature</a>
+    <a href="https://github.com/acrucetta/chicago_COVID_app/issues">Request Feature</a>
   </p>
 </p>
 
@@ -99,7 +97,7 @@ npm install npm@latest -g
  
 1. Clone the repo
 ```sh
-git clone https://github.com/github_username/repo.git
+git clone https://github.com/acrucetta/chicago_COVID_app.git
 ```
 2. Install NPM packages
 ```sh
@@ -127,7 +125,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/github_username/repo](https://github.com/github_username/repo)
+Project Link: [https://github.com/acrucetta/chicago_COVID_app](https://github.com/github_username/repo)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
