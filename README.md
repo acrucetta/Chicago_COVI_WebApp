@@ -17,11 +17,6 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -65,11 +60,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://media.giphy.com/media/UqwoqfMAmZiV8vG6ea/giphy.gif" width="400" height="200" />
+This project was born out of my desire to track Chicago's re-opening stages. In April, the city released an opening plan with five phases that detailed the specific metrics Chicago needed to meet to proceed to the next stage.
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo`, `twitter_handle`, `email`
+## Project Demo
+
+<img src="https://media.giphy.com/media/UqwoqfMAmZiV8vG6ea/giphy.gif" width="400" height="200" />
 
 ### Built With
 
@@ -84,14 +79,6 @@ Here's a blank template to get started:
 
 To get a local copy up and running follow these simple steps.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
-
 ### Installation
  
 1. Clone the repo
@@ -102,7 +89,6 @@ git clone https://github.com/acrucetta/chicago_COVID_app.git
 ```sh
 npm install
 ```
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -113,7 +99,6 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
 
 <!-- LICENSE -->
 ## License
@@ -129,16 +114,7 @@ Project Link: [https://github.com/acrucetta/chicago_COVID_app](https://github.co
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[issues-url]: https://github.com/acrucetta/chicago_COVID_app/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://www.linkedin.com/in/andres-crucetta/
 [product-screenshot]: images/screenshot.png
