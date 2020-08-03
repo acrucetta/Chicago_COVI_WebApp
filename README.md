@@ -74,7 +74,6 @@ This project was born out of my desire to track Chicago's re-opening stages. In 
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
 To get a local copy up and running follow these simple steps.
 
 ### Installation
@@ -83,10 +82,15 @@ To get a local copy up and running follow these simple steps.
 ```sh
 git clone https://github.com/acrucetta/chicago_COVID_app.git
 ```
-2. Install NPM packages
+2. Install Environment
 ```sh
-npm install
+source .venv/bin/activate
 ```
+3. Run the application in your local server
+```sh
+python myapp.py
+```
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
