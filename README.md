@@ -110,8 +110,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-
-Project Link: [https://github.com/acrucetta/chicago_COVID_app](https://github.com/github_username/repo)
+- Andres Crucetta - acrucettanieto@gmail.com
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
